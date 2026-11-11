@@ -14,6 +14,11 @@ def test_parse_rows_ignores_comment_and_wrapper():
     assert _parse_rows(MALE)[0][11] == "Guillermo Platel"
 
 
+def test_parse_rows_handles_real_file_ending():
+    # the live files end with "]\n    ];", not "]];"
+    assert len(_parse_rows(FEMALE.replace("]]", "]\n    ];"))) == 3
+
+
 def test_female_opponent_age_comes_from_birth_date():
     df = clean_matches(FEMALE, "1981-09-26")
     assert len(df) == 3

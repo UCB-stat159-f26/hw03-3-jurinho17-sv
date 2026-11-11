@@ -10,7 +10,7 @@ COLUMNS = {0: "date", 1: "tournament", 2: "surface", 4: "result", 11: "opponent"
 
 def _parse_rows(js_text):
     """Strip the JS wrapper of `var morematchmx = [[...], ...];` and parse the array as JSON."""
-    return json.loads(js_text[js_text.index("[["):js_text.rindex("]]") + 2])
+    return json.loads(js_text[js_text.index("["):js_text.rindex("]") + 1])
 
 
 def _years(timedelta):
